@@ -1,0 +1,18 @@
+services:
+  code-server:
+    #image: codercom/code-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: code-server
+    restart: always
+    environment:
+      - UID=1000
+      - GID=1000
+      - DOCKER_USER=$USER
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./config:/home/coder/.config
+      - ./app:/home/coder/app
+
